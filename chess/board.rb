@@ -8,15 +8,16 @@ class Board
 
   def populate
     blank = Array.new(8) { Array.new(8) { |el| el = Piece.new } }
-    blank[2..5].map do |row|
-      row.map {|el| el = nil}
-    end
+    blank[2..5].map!{ |row| row.map! {|el| el = nil} }
+    blank
   end
 
   def move_piece(start_pos, end_pos)
-    raise ArgumentError if grid[start_pos].nil?
-    raise StandardError if grid[end_pos].nil?
-    start_pos, end_pos = end_pos, start_pos
+    #TODO revise end_pos logic to support taking opposing pieces
+    #TODO revise end_pos to check if piece can get to end_pos
+    raise ArgumentError if self[start_pos].nil?
+    raise StandardError unless self[end_pos].nil?
+    self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
   end
 
   def [](pos)
