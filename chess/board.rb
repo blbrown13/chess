@@ -1,4 +1,6 @@
 require_relative 'piece.rb'
+# delete later
+require_relative 'display.rb'
 
 class Board
   attr_reader :grid
@@ -36,14 +38,17 @@ class Board
   end
 end
 
-board = Board.new
-board.move_piece([0,1],[5,4])
-board.move_piece([0,0],[3,4])
-rook = Piece.new(board)
-pos = [3,4]
+# board = Board.new
+# display = Display.new(board)
+# display.render
 
-p pos
+# board.move_piece([0,1],[5,4])
+# board.move_piece([0,0],[3,4])
+# rook = Piece.new(board)
+# pos = [3,4]
+#
+# p pos
 # p board[[0,4]]
-p board[[1,4]]
+# p board[[1,4]]
 # p board[[5,4]]
-p rook.generate_horizontal_moves(pos)
+# p rook.generate_horizontal_moves(pos)

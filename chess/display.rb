@@ -39,5 +39,10 @@ end
 if __FILE__ == $PROGRAM_NAME
   board = Board.new
   display = Display.new(board)
-  display.cursor_test
+  board.move_piece([0,1],[5,4])
+  display.render
+  rook = Piece.new(board)
+  p "h_moves: #{rook.generate_xy_moves([3,3], :h)}"
+  p "v_moves: #{rook.generate_xy_moves([3,3], :v)}"
+  # display.cursor_test
 end

@@ -4,17 +4,17 @@ module SlidingPiece
     moves = []
   end
 
-  def horizontal_move(pos, dx)
+  def horiz_move(pos, dx)
     # dx: 0 = left / dx: 1 = right
-    dx == 0 ? [pos[0] - 1, pos[1]] : [pos[0] + 1, pos[1]]
+    dx == 0 ? [pos[0], pos[1] - 1] : [pos[0], pos[1] + 1]
   end
 
-  def vertical_move(pos, dy)
+  def vert_move(pos, dy)
     # dy: 0 = up / dy: 1 = down
-    dy == 0 ? [pos[0], pos[1] + 1] : [pos[0], pos[1] - 1]
+    dy == 0 ? [pos[0] + 1, pos[1]] : [pos[0] - 1, pos[1]]
   end
 
-  def diagonal_move(pos, dir)
+  def diag_move(pos, dir)
     case dir
     when :left_down
       [pos[0] - 1, pos[1] - 1]
@@ -29,27 +29,25 @@ module SlidingPiece
 
   def add_move(pos, dir)
     dir_moves = []
-    if dir == :horiz
+    if dir == :h
       generate_horizontal_moves
     end
   end
 
 
-  def generate_horizontal_moves(pos)
+  def generate_xy_moves(pos, dir)
     moves = []
     2.times do |d|
-      curr_pos = pos
-      until out_of_bounds?(curr_pos)
-        curr_pos = horizontal_move(curr_pos, d)
-        if @board[curr_pos].nil?
-          moves << curr_pos
-        else
-          break
-        end
+      new_pos = pos
+      until out_of_bounds?(new_pos)
+        new_pos = (dir == :h ? horiz_move(new_pos, d) : vert_move(new_pos, d))
+        @board[new_pos].nil? ? moves << new_pos : break
       end
     end
     moves
   end
+
+
 
 
 
