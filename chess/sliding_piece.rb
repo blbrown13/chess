@@ -17,13 +17,13 @@ module SlidingPiece
   def diag_move(pos, dir)
     case dir
     when :left_down
-      [pos[0] - 1, pos[1] - 1]
-    when :left_up
-      [pos[0] - 1, pos[1] + 1]
-    when :right_up
-      [pos[0] + 1, pos[1] + 1]
-    when :right_down
       [pos[0] + 1, pos[1] - 1]
+    when :left_up
+      [pos[0] - 1, pos[1] - 1]
+    when :right_up
+      [pos[0] - 1, pos[1] + 1]
+    when :right_down
+      [pos[0] + 1, pos[1] + 1]
     end
   end
 
