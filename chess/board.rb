@@ -20,6 +20,10 @@ class Board
     self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
   end
 
+  def in_bounds?(pos)
+    pos.all? {|cord| cord.between?(0, 7)}
+  end
+
   def [](pos)
     row, col = pos
     grid[row][col]
