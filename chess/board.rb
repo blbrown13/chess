@@ -5,11 +5,10 @@ class Board
 
   def initialize
     @grid = populate
-
   end
 
   def populate
-    blank = Array.new(8) { Array.new(8) { |el| el = Piece.new } }
+    blank = Array.new(8) { Array.new(8) { |el| el = Piece.new(self) } }
     blank[2..5].map!{ |row| row.map! {|el| el = nil} }
     blank
   end
@@ -36,3 +35,15 @@ class Board
     grid[row][col] = piece
   end
 end
+
+board = Board.new
+board.move_piece([0,1],[5,4])
+board.move_piece([0,0],[3,4])
+rook = Piece.new(board)
+pos = [3,4]
+
+p pos
+# p board[[0,4]]
+p board[[1,4]]
+# p board[[5,4]]
+p rook.generate_horizontal_moves(pos)

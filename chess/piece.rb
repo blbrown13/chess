@@ -1,10 +1,13 @@
-class Piece
+require_relative 'sliding_piece.rb'
 
-  def initialize
+class Piece
+  include SlidingPiece
+
+  def initialize(board)
+    @board = board
 
   end
 
-end
 
-# individual piece classes will have a
-# move_dirs method that #moves will use
+
+end
