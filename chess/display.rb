@@ -3,6 +3,8 @@ require_relative 'cursor.rb'
 # TODO only requiring board to run during test
 #      remove before completion
 require_relative 'board.rb'
+require_relative 'rook.rb'
+
 
 class Display
   attr_reader :board
@@ -39,11 +41,11 @@ end
 if __FILE__ == $PROGRAM_NAME
   board = Board.new
   display = Display.new(board)
-  board.move_piece([0,1],[5,4])
+  # board.move_piece([0,1],[5,4])
   display.render
-  rook = Piece.new(board)
-  p "h_moves: #{rook.generate_xy_moves([3,3], :h)}"
-  p "v_moves: #{rook.generate_xy_moves([3,3], :v)}"
-  p "d_moves: #{rook.generate_diag_moves([3,3])}"
+  rook = Rook.new(board, :r, [0,0], :b)
+  # p "h_moves: #{rook.generate_xy_moves([3,3], :h)}"
+  # p "v_moves: #{rook.generate_xy_moves([3,3], :v)}"
+  # p "d_moves: #{rook.generate_diag_moves([3,3])}"
   # display.cursor_test
 end

@@ -1,4 +1,5 @@
 require_relative 'piece.rb'
+# require_relative 'pieces.rb'
 
 class Board
   attr_reader :grid
@@ -8,7 +9,7 @@ class Board
   end
 
   def populate
-    blank = Array.new(8) { Array.new(8) { |el| el = Piece.new(self) } }
+    blank = Array.new(8) { Array.new(8) { |el| el = "*" } }
     blank[2..5].map!{ |row| row.map! {|el| el = nil} }
     blank
   end
