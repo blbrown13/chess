@@ -44,5 +44,6 @@ if __FILE__ == $PROGRAM_NAME
   rook = Piece.new(board)
   p "h_moves: #{rook.generate_xy_moves([3,3], :h)}"
   p "v_moves: #{rook.generate_xy_moves([3,3], :v)}"
+  p "d_moves: #{rook.generate_diag_moves([3,3])}"
   # display.cursor_test
 end
