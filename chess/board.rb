@@ -9,7 +9,7 @@ class Board
   end
 
   def populate
-    blank = Array.new(8) { Array.new(8) { |el| el = "*" } }
+    blank = Array.new(8) { Array.new(8) { |el| el = NullPiece.new(self) } }
     blank[2..5].map!{ |row| row.map! {|el| el = nil} }
     blank
   end

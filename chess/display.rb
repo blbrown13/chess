@@ -3,7 +3,7 @@ require_relative 'cursor.rb'
 # TODO only requiring board to run during test
 #      remove before completion
 require_relative 'board.rb'
-require_relative 'rook.rb'
+require_relative 'pieces.rb'
 
 
 class Display
@@ -43,7 +43,10 @@ if __FILE__ == $PROGRAM_NAME
   display = Display.new(board)
   # board.move_piece([0,1],[5,4])
   display.render
-  rook = Rook.new(board, :r, [0,0], :b)
+  rook = Rook.new(board, [0,0], :b)
+  king = King.new(board, [0,3], :b)
+  p rook
+  p king
   # p "h_moves: #{rook.generate_xy_moves([3,3], :h)}"
   # p "v_moves: #{rook.generate_xy_moves([3,3], :v)}"
   # p "d_moves: #{rook.generate_diag_moves([3,3])}"
