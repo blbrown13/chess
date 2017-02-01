@@ -24,16 +24,23 @@ class Display
   def render
     system('clear')
     board.grid.each_with_index do |row, row_idx|
-      row.each_with_index do |col, col_idx|
-        if @cursor.cursor_pos == [row_idx, col_idx]
-          print (col.is_a?(Piece) ? " ♙ " : " ▢ ").red.on_black.blink
+      row.each_with_index do |piece, col_idx|
+        if (row_idx.odd? && col_idx.even?) || (row_idx.even? && col_idx.odd?)
+          if @cursor.cursor_pos == [row_idx, col_idx]
+            print " #{piece} ".on_light_green.blink
+          else
+            print " #{piece} ".on_light_black
+          end
         else
-          print (col.is_a?(Piece) ? " ♙ " : " ▢ ").white.on_black
+          if @cursor.cursor_pos == [row_idx, col_idx]
+            print " #{piece} ".on_light_green.blink
+          else
+            print " #{piece} ".on_white
+          end
         end
       end
       puts ""
     end
-    ''
   end
 end
 
@@ -41,14 +48,5 @@ end
 if __FILE__ == $PROGRAM_NAME
   board = Board.new
   display = Display.new(board)
-  # board.move_piece([0,1],[5,4])
-  display.render
-  rook = Rook.new(board, [0,0], :b)
-  king = King.new(board, [0,3], :b)
-  p rook
-  p king
-  # p "h_moves: #{rook.generate_xy_moves([3,3], :h)}"
-  # p "v_moves: #{rook.generate_xy_moves([3,3], :v)}"
-  # p "d_moves: #{rook.generate_diag_moves([3,3])}"
-  # display.cursor_test
+  display.cursor_test
 end

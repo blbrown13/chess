@@ -4,7 +4,10 @@ class Pawn < Piece
 
   def initialize(board, pos, color)
     super(board, pos, color)
-    @sym = color == :b ? "♟" : "♙"
+  end
+
+  def to_s
+    @color == :b ? "♟" : "♙"
   end
 
 end
